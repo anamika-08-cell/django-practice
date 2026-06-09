@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block start %}
+
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+ 
+  <form class="col-12 col-md-8 col-lg-6 card p-4 shadow-lg" style="border: 1px solid #e0e0e0; background-color: #ffffff;" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+     <h1>Add Reciepes : </h1>
+     <hr>
+    <div class="mb-3">
+      <label class="form-label text-muted" style="font-size: 14px;">Receipe name</label>
+      <input name="recipe_name" type="text" class="form-control" required>
+    </div>
+    
+    <div class="mb-3">
+      <label  class="form-label text-muted" style="font-size: 14px;">Receipe description</label>
+      <textarea name=recipe_description class="form-control" rows="3" required></textarea>
+    </div>
+    
+    <div class="mb-4">
+      <label class="form-label text-muted" style="font-size: 14px;">Receipe Image</label>
+      <input name="recipe_image" type="file" class="form-control">
+    </div>
+   
+    <button type="submit" class="btn btn-success w-100 py-2" style="border: none; font-weight: 500;">Add Reciepes</button>
+    
+  </form>
+</div>
+<div class="container mt-5">
+  <h2>All Recipes List</h2>
+  <hr>
+  
+  <table class="table table-bordered table-striped table-hover">
+
+  <thead>
+    <tr>
+      <th scope="col">S.No.</th>
+      <th scope="col">recipe_name</th>
+      <th scope="col">recipe_description</th>
+      <th scope="col">Image</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for recipe in recipes %}
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{recipe.recipe_name}}</td>
+      <td>{{recipe.recipe_description}}</td>
+      <td>
+        {% if recipe.recipe_image %}
+             <!-- इस लिंक पर क्लिक करने से इमेज नए टैब में खुल जाएगी -->
+             <a href="{{ recipe.recipe_image.url }}" target="_blank">
+             <!-- यह क्लास इमेज को छोटा और सुंदर थंबनेल बना देगी -->
+                 <img src="{{ recipe.recipe_image.url }}" alt="Recipe" style="width: 90px; height: 90px; object-fit: cover;" class="img-thumbnail">
+             </a>
+        {% else %}
+            <span class="text-muted">No Image</span>
+        {% endif %}
+      </td>
+      <td>
+        <a href="#" class="btn btn-danger">Delete</a>
+       </td>
+    </tr>
+    {% endfor %}
+    
+    
+  </tbody>
+</table>
+</div>
+{% endblock %}
