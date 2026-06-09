@@ -16,14 +16,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from home.views import *
-
+from vege.views import *
 
 urlpatterns = [
+    path('recipes/', recipes , name = "recipes"),
     path("success-page/", success_page , name = "success_page"),
     path('about/', about , name = "about"),
     path('contact/', contact , name = "contact"),
     path('', home , name = "home"),
     path('admin/', admin.site.urls),
 ]
+# यह लाइन Django को मीडिया फाइल्स का रास्ता दिखाने की अनुमति देती है
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += staticfiles_urlpatterns()
