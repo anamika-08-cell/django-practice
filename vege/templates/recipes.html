@@ -26,6 +26,23 @@
     
   </form>
 </div>
+<hr>
+
+<!--for making search bar  -->
+<div class="mt-5">
+    <div class="mx-auto col-6">
+     <form>
+        <div class="mb-3">
+          <label class="mb-2 form-label text-muted" style="font-size: 14px;"><h1><b>Search Food😋</b></h1> </label>
+          <input name="search" ,value="{{recipe.recipe_name}}" type="text" class="mb-2 form-control">
+
+        </div>
+        <button type="submit" class="mb-2 btn btn-primary">Search</button>
+      </form>
+    </div>
+
+  </div>
+
 <div class="container mt-5">
   <h2>All Recipes List</h2>
   <hr>
@@ -40,6 +57,7 @@
       <th scope="col">Image</th>
     </tr>
   </thead>
+
   <tbody>
     {% for recipe in recipes %}
     <tr>
@@ -58,7 +76,8 @@
         {% endif %}
       </td>
       <td>
-        <a href="#" class="btn btn-danger">Delete</a>
+        <a href="/delete-recipe/{{recipe.id}}/" class="btn btn-danger">Delete</a><br><br>
+        <a href="/update-recipe/{{recipe.id}}/" class="btn btn-success">Update</a>
        </td>
     </tr>
     {% endfor %}
