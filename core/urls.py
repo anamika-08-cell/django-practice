@@ -29,7 +29,11 @@ urlpatterns = [
     path('delete-recipe/<id>/' , delete_recipe , name='delete_recipe'),
     path('update-recipe/<id>/' , update_recipe , name='update_recipe'),
     path('about/', about , name = "about"),
+    path('login/', login_page , name = "login_page"),
     path('contact/', contact , name = "contact"),
+    path('register/', register_page , name = "register_page"),
+    path('', home , name = "home"),
+     path('logout/', logout_page , name = "logout_page"),
     path('', home , name = "home"),
     path('admin/', admin.site.urls),
 ]
