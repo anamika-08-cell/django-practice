@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-d2pps)pu=m@zm$mfd84m-wfdfpsvrufx^$a7)ep@1stjwukr#_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
